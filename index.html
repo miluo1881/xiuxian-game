@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现实修仙</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:#00ffcc;
+    font-family:sans-serif;
+    text-align:center;
+}
+
+#character{
+    font-size:80px;
+    margin-top:40px;
+}
+
+.progress{
+    width:80%;
+    height:20px;
+    background:#333;
+    margin:20px auto;
+    border-radius:10px;
+}
+
+.bar{
+    height:100%;
+    width:0%;
+    background:#00ffcc;
+    border-radius:10px;
+}
+
+button{
+    padding:12px 20px;
+    font-size:18px;
+    background:#00ffcc;
+    border:none;
+    border-radius:8px;
+    margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🌿 现实修仙 🌿</h2>
+
+<div id="character">🧘‍♂️</div>
+
+<div>境界：<span id="realm">练气一层</span></div>
+<div>修为：<span id="xp">0</span></div>
+
+<div class="progress">
+    <div class="bar" id="bar"></div>
+</div>
+
+<button onclick="breakthrough()">拍摄灵草突破</button>
+
+<script>
+
+let xp = 0;
+let maxXP = 100;
+let level = 1;
+
+function update(){
+    document.getElementById("xp").innerText = xp;
+    document.getElementById("bar").style.width = (xp/maxXP*100)+"%";
+}
+
+setInterval(()=>{
+    if(xp < maxXP){
+        xp += 1;
+        update();
+    }
+},1000);
+
+function breakthrough(){
+    if(xp < maxXP){
+        alert("还未到瓶颈！");
+        return;
+    }
+
+    let gain = Math.floor(Math.random()*400)+200;
+    xp += gain;
+    level++;
+    maxXP += 200;
+
+    document.getElementById("realm").innerText = "练气 "+level+" 层";
+
+    alert("🌱 获得灵草！突破成功！+"+gain+"修为");
+    update();
+}
+
+</script>
+
+</body>
+</html>
